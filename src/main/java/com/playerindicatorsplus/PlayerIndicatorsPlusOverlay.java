@@ -23,6 +23,7 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.gameval.VarbitID;
 import net.runelite.client.game.ChatIconManager;
+import net.runelite.client.party.PartyService;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
@@ -42,14 +43,16 @@ class PlayerIndicatorsPlusOverlay extends Overlay
 	private final Client client;
 	private final PlayerIndicatorsPlusConfig config;
 	private final ChatIconManager chatIconManager;
+	private final PartyService partyService;
 
 	@Inject
-	private PlayerIndicatorsPlusOverlay(Client client, PlayerIndicatorsPlusConfig config,
-		ChatIconManager chatIconManager)
+	PlayerIndicatorsPlusOverlay(Client client, PlayerIndicatorsPlusConfig config,
+		ChatIconManager chatIconManager, PartyService partyService)
 	{
 		this.client = client;
 		this.config = config;
 		this.chatIconManager = chatIconManager;
+		this.partyService = partyService;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(PRIORITY_MED);
 	}
@@ -179,6 +182,14 @@ class PlayerIndicatorsPlusOverlay extends Overlay
 		if (player == localPlayer)
 		{
 			return isEnabled(config.highlightOwnPlayer()) ? config.ownPlayerColor() : null;
+		}
+
+		// Read RuneLite's current party each time so joining, leaving, and member
+		// login changes are reflected in names, tiles, minimap labels, and menus.
+		if (isEnabled(config.highlightPartyMembers()) && partyService.isInParty() &&
+			player.getName() != null && partyService.getMemberByDisplayName(player.getName()) != null)
+		{
+			return config.partyMemberColor();
 		}
 
 		if (player.isFriend())

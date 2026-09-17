@@ -37,6 +37,8 @@ public class PlayerIndicatorsPlusOverlayTest
 		assertTrue(config.colorWildernessNames());
 		assertEquals(PlayerIndicatorsPlusConfig.HighlightSetting.DISABLED, config.highlightOwnPlayer());
 		assertEquals(new Color(0, 184, 212), config.ownPlayerColor());
+		assertEquals(PlayerIndicatorsPlusConfig.HighlightSetting.ENABLED, config.highlightPartyMembers());
+		assertEquals(new Color(234, 123, 91), config.partyMemberColor());
 		assertEquals(PlayerIndicatorsPlusConfig.HighlightSetting.ENABLED, config.highlightFriends());
 		assertEquals(new Color(0, 200, 83), config.friendColor());
 		assertEquals(PlayerIndicatorsPlusConfig.HighlightSetting.ENABLED, config.highlightFriendsCombatZones());

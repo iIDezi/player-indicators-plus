@@ -21,7 +21,7 @@ import net.runelite.client.util.ColorUtil;
 
 @PluginDescriptor(
 	name = "Player Indicators Plus",
-	description = "Customize player names, tiles, minimap labels, ranks, and PvP-area colors",
+	description = "Highlights players with configurable names, tiles, minimap labels, ranks, and Wilderness/PvP colors",
 	tags = {"wilderness", "pvp", "player", "names", "indicators", "minimap", "overlay"}
 )
 public class PlayerIndicatorsPlusPlugin extends Plugin

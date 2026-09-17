@@ -72,6 +72,30 @@ public interface PlayerIndicatorsPlusConfig extends Config
 
 	@ConfigItem(
 		position = 2,
+		keyName = "highlightPartyMembers",
+		name = "Highlight party members",
+		description = "Use a separate color for members of your current RuneLite party, including Party Hub parties",
+		section = highlightSection
+	)
+	default HighlightSetting highlightPartyMembers()
+	{
+		return HighlightSetting.ENABLED;
+	}
+
+	@ConfigItem(
+		position = 3,
+		keyName = "partyMemberColor",
+		name = "Party member",
+		description = "Color of party members; takes priority over friend, clan, team, and combat-zone colors",
+		section = highlightSection
+	)
+	default Color partyMemberColor()
+	{
+		return new Color(234, 123, 91);
+	}
+
+	@ConfigItem(
+		position = 4,
 		keyName = "highlightFriends",
 		name = "Highlight friends",
 		description = "Use a separate color for friends",
@@ -83,7 +107,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 3,
+		position = 5,
 		keyName = "friendColor",
 		name = "Friend",
 		description = "Color of friend names",
@@ -95,7 +119,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 4,
+		position = 6,
 		keyName = "highlightFriendsCombatZones",
 		name = "Highlight friends - Combat Zones",
 		description = "Use a separate color for friends who are inside Wilderness or PvP combat zones",
@@ -107,7 +131,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 5,
+		position = 7,
 		keyName = "friendsCombatZonesColor",
 		name = "Friends - Combat Zones",
 		description = "Color of friend names while those friends are inside combat zones",
@@ -119,7 +143,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 6,
+		position = 8,
 		keyName = "highlightFriendsChat",
 		name = "Highlight friends chat members",
 		description = "Use a separate color for friends chat members",
@@ -131,7 +155,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 7,
+		position = 9,
 		keyName = "friendsChatColor",
 		name = "Friends chat",
 		description = "Color of friends chat member names",
@@ -143,7 +167,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 8,
+		position = 10,
 		keyName = "highlightTeamMembers",
 		name = "Highlight team members",
 		description = "Use a separate color for players on your team",
@@ -155,7 +179,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 9,
+		position = 11,
 		keyName = "teamMemberColor",
 		name = "Team member",
 		description = "Color of team member names",
@@ -167,7 +191,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 10,
+		position = 12,
 		keyName = "highlightClanMembers",
 		name = "Highlight clan members",
 		description = "Use a separate color for clan members",
@@ -179,7 +203,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 11,
+		position = 13,
 		keyName = "clanMemberColor",
 		name = "Clan member",
 		description = "Color of clan member names",
@@ -191,7 +215,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 12,
+		position = 14,
 		keyName = "highlightOthers",
 		name = "Highlight others",
 		description = "Display players who do not use an enabled category color",
@@ -203,7 +227,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 13,
+		position = 15,
 		keyName = "safeAreaNameColor",
 		name = "Others - Safe Areas",
 		description = "Color of other player names in safe areas",
@@ -215,7 +239,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 14,
+		position = 16,
 		keyName = "wildernessNameColor",
 		name = "Others - Combat Zones",
 		description = "Color of other player names in Wilderness and PvP combat zones",
