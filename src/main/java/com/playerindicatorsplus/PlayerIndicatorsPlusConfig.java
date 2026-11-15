@@ -13,7 +13,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 
 	@ConfigSection(
 		name = "Highlight options",
-		description = "Toggle highlighted players by type and choose their colors",
+		description = "Toggle highlighted players by type and choose their colors. PVP highlights a type only while that player is in the Wilderness or a PvP area",
 		position = 99
 	)
 	String highlightSection = "highlightOptions";
@@ -21,7 +21,11 @@ public interface PlayerIndicatorsPlusConfig extends Config
 	enum HighlightSetting
 	{
 		DISABLED,
-		ENABLED
+		ENABLED,
+		/**
+		 * Highlight only while the player being drawn is in the Wilderness or a PvP area.
+		 */
+		PVP
 	}
 
 	@ConfigItem(
@@ -218,7 +222,7 @@ public interface PlayerIndicatorsPlusConfig extends Config
 		position = 14,
 		keyName = "highlightOthers",
 		name = "Highlight others",
-		description = "Display players who do not use an enabled category color",
+		description = "Display players who do not use an enabled category color. Choose PVP to show them only in the Wilderness and PvP areas",
 		section = highlightSection
 	)
 	default HighlightSetting highlightOthers()

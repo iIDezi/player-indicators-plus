@@ -181,12 +181,12 @@ class PlayerIndicatorsPlusOverlay extends Overlay
 		Player localPlayer = client.getLocalPlayer();
 		if (player == localPlayer)
 		{
-			return isEnabled(config.highlightOwnPlayer()) ? config.ownPlayerColor() : null;
+			return isActive(config.highlightOwnPlayer(), playerInPvpZone) ? config.ownPlayerColor() : null;
 		}
 
 		// Read RuneLite's current party each time so joining, leaving, and member
 		// login changes are reflected in names, tiles, minimap labels, and menus.
-		if (isEnabled(config.highlightPartyMembers()) && partyService.isInParty() &&
+		if (isActive(config.highlightPartyMembers(), playerInPvpZone) && partyService.isInParty() &&
 			player.getName() != null && partyService.getMemberByDisplayName(player.getName()) != null)
 		{
 			return config.partyMemberColor();
@@ -206,40 +206,41 @@ class PlayerIndicatorsPlusOverlay extends Overlay
 			}
 		}
 
-		if (player.isFriendsChatMember() && isEnabled(config.highlightFriendsChat()))
+		if (player.isFriendsChatMember() && isActive(config.highlightFriendsChat(), playerInPvpZone))
 		{
 			return config.friendsChatColor();
 		}
 
 		if (localPlayer != null && player.getTeam() > 0 &&
-			player.getTeam() == localPlayer.getTeam() && isEnabled(config.highlightTeamMembers()))
+			player.getTeam() == localPlayer.getTeam() && isActive(config.highlightTeamMembers(), playerInPvpZone))
 		{
 			return config.teamMemberColor();
 		}
 
-		if (player.isClanMember() && isEnabled(config.highlightClanMembers()))
+		if (player.isClanMember() && isActive(config.highlightClanMembers(), playerInPvpZone))
 		{
 			return config.clanMemberColor();
 		}
 
-		return isEnabled(config.highlightOthers()) ? othersColor : null;
+		return isActive(config.highlightOthers(), playerInPvpZone) ? othersColor : null;
 	}
 
-	private static boolean isEnabled(PlayerIndicatorsPlusConfig.HighlightSetting setting)
+	static boolean isActive(PlayerIndicatorsPlusConfig.HighlightSetting setting, boolean inPvpZone)
 	{
-		return setting == PlayerIndicatorsPlusConfig.HighlightSetting.ENABLED;
+		return setting == PlayerIndicatorsPlusConfig.HighlightSetting.ENABLED ||
+			setting == PlayerIndicatorsPlusConfig.HighlightSetting.PVP && inPvpZone;
 	}
 
 	static Color selectFriendColor(boolean inCombatZone,
 		PlayerIndicatorsPlusConfig.HighlightSetting combatZoneSetting, Color combatZoneColor,
 		PlayerIndicatorsPlusConfig.HighlightSetting normalSetting, Color normalColor)
 	{
-		if (inCombatZone && isEnabled(combatZoneSetting))
+		if (inCombatZone && isActive(combatZoneSetting, true))
 		{
 			return combatZoneColor;
 		}
 
-		return isEnabled(normalSetting) ? normalColor : null;
+		return isActive(normalSetting, inCombatZone) ? normalColor : null;
 	}
 
 	FriendsChatRank getFriendsChatRank(Player player)

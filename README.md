@@ -9,6 +9,9 @@ Wilderness or PvP area, even if you stay in a safe area.
 - Separate colors for your player, party members, friends, friends chat, team members, clan
   members, and everyone else.
 - Different friend and player colors inside combat zones.
+- Every highlight type can be set to **Disabled**, **Enabled**, or **PVP**. PVP
+  highlights that type only while the player is in the Wilderness or a PvP area,
+  so you can, for example, show other players' names only in PvP.
 - Optional names above players, colored tiles, minimap labels, and right-click
   menu colors.
 - Friends chat and clan rank icons.

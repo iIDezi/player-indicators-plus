@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added a PVP choice to every highlight setting, like RuneLite's Player Indicators. It highlights that type only while the player is in the Wilderness or a PvP area (fixes #1).
+
 ## 1.4.0
 
 - Added the party member highlighting from the latest combined release to the standalone plugin.
